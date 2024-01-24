@@ -38,3 +38,40 @@ surveys$plot_id #shows the content of the specified column
 
 surveys_200 <- surveys[200, ] #extracts only the row 200
 surveys[nrow(surveys), ] #extracts the last row
+
+# Factors
+str(surveys)
+surveys$sex <- factor(surveys$sex) #uses the factor function to transform the column sex to factors
+levels(surveys$sex)
+
+surveys$taxa <- factor(surveys$taxa)
+surveys$genus <- factor(surveys$genus)
+
+levels(surveys$genus)
+nlevels(surveys$genus) #shows how many different genera is in the column genus
+
+levels(surveys$taxa) #how many rabbits are there?
+sum(surveys$taxa == "Rabbit")
+summary(surveys$taxa) #shows summary for the factor "taxa"
+
+#convert factors
+as.character(sex)
+
+year_fct <- factor (c(1990, 1983, 1977, 1997)) #creates a factor
+as.numeric(year_fct)
+
+as.numeric(as.character(year_fct))
+as.numeric(levels(year_fct))[year_fct]
+
+#renaming factors
+plot(surveys$sex)
+summary(surveys$sex)
+sex <- surveys$sex
+levels(sex)
+plot(sex)
+sex <- addNA(sex) #i want the factor sex to contain NA also
+levels(sex)
+levels(sex)[3] <- "undetermined" #i want NA (level 3) to be changed to "undetermined"
+levels(sex)
+sex <- factor(sex, levels = c("undetermined", "F", "M")) #changes the order of levels on the plot
+plot(sex)
